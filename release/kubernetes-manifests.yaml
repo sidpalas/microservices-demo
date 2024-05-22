@@ -67,10 +67,12 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 64Mi
+            memory: 5Mi
+            # memory: 64Mi
           limits:
             cpu: 200m
-            memory: 128Mi
+            memory: 10Mi
+            # memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -166,10 +168,12 @@ spec:
           value: "10"
         resources:
           requests:
-            cpu: 300m
+            # cpu: 300m
+            cpu: 3000m
             memory: 256Mi
           limits:
-            cpu: 500m
+            # cpu: 500m
+            cpu: 5000m
             memory: 512Mi
 ---
 apiVersion: v1
@@ -452,12 +456,14 @@ spec:
         readinessProbe:
           initialDelaySeconds: 15
           grpc:
-            port: 7070
+            # port: 7070
+            port: 8080
         livenessProbe:
           initialDelaySeconds: 15
           periodSeconds: 10
           grpc:
-            port: 7070
+            # port: 7070
+            port: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -508,7 +514,8 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: redis:alpine
+        image: redis:debian
+        # image: redis:alpine
         ports:
         - containerPort: 6379
         readinessProbe:
